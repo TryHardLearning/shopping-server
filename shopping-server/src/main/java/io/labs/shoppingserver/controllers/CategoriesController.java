@@ -7,7 +7,7 @@ import io.labs.shoppingserver.services.implement.CrudServiceImpl;
 import io.labs.shoppingserver.services.CategoriesService;
 import org.modelmapper.ModelMapper;
 
-public class CategoriesController  extends AllCrudController<Category, CategoryDTO,Long> {
+public class CategoriesController  extends AllCrudController<Category, CategoryDTO, Long> {
     private final CategoriesService service;
 
     private final ModelMapper modelMapper;
