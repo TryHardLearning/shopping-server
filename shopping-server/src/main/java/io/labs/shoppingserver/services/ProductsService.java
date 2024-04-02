@@ -1,9 +1,8 @@
 package io.labs.shoppingserver.services;
 
-import io.labs.shoppingserver.models.Category;
 import io.labs.shoppingserver.models.Product;
 import io.labs.shoppingserver.repositories.ProductsRepository;
-import io.labs.shoppingserver.services.CRUD.CrudServiceImpl;
+import io.labs.shoppingserver.services.implement.CrudServiceImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
