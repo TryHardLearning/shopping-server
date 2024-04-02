@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
 
-    private ShoppingBagRepository repository;
+    private final ShoppingBagRepository repository;
 
     public ShoppingBagService(ShoppingBagRepository repository) {
         this.repository = repository;
