@@ -1,4 +1,4 @@
-package io.labs.shoppingserver.services.CRUD;
+package io.labs.shoppingserver.services.implement;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
