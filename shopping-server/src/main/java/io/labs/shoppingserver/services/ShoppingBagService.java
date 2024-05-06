@@ -19,4 +19,9 @@ public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
     protected JpaRepository<ShoppingBag, Long> getRepository() {
         return this.repository;
     }
+
+    @Override
+    public ShoppingBag save(ShoppingBag shoppingBag) {
+        return this.repository.save(shoppingBag);
+    }
 }
