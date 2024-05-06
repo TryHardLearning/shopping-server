@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class CategoryDTO {
 
     private Long id;
-    
+
     @NotNull
     private String type;
 }
