@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,8 +21,8 @@ public class ShoppingBag {
     private Long id;
 
     @OneToMany @NotNull
-    List<ItemShoppingBag> ProductItems;
+    private List<ItemShoppingBag> ProductItems;
 
-    @ManyToOne @NotNull
+    @OneToOne @NotNull
     private User user;
 }

@@ -29,6 +29,4 @@ public class Product {
     @NotNull
     private Double cost;
 
-    @OneToMany
-    private List<Category> categories;
 }

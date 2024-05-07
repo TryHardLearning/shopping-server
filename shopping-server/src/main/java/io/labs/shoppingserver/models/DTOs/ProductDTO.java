@@ -1,6 +1,5 @@
 package io.labs.shoppingserver.models.DTOs;
 
-import io.labs.shoppingserver.models.Category;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -29,8 +28,5 @@ public class ProductDTO {
 
     @NotNull
     private Double cost;
-
-    @OneToMany @NotNull
-    private List<Category> categories;
-
+    
 }
