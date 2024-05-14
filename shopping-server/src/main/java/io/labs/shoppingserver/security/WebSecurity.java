@@ -21,11 +21,12 @@ import io.labs.shoppingserver.repositories.AuthService;
 @EnableWebSecurity
 @Configuration
 public class WebSecurity {
+    private final PasswordEncoder passwordEncoder;
     private final AuthService authService;
     private final AuthenticationEntryPoint authenticationEntryPoint;
 
-    public WebSecurity(AuthService authService,
-                       AuthenticationEntryPoint authenticationEntryPoint) {
+    public WebSecurity(PasswordEncoder passwordEncoder, AuthService authService, AuthenticationEntryPoint authenticationEntryPoint) {
+        this.passwordEncoder = passwordEncoder;
         this.authService = authService;
         this.authenticationEntryPoint = authenticationEntryPoint;
     }
@@ -38,7 +39,7 @@ public class WebSecurity {
 
         authenticationManagerBuilder
                 .userDetailsService( authService )
-                .passwordEncoder( passwordEncoder() );
+                .passwordEncoder( passwordEncoder );
 
         AuthenticationManager authenticationManager =
                 authenticationManagerBuilder.build();
@@ -80,11 +81,6 @@ public class WebSecurity {
                 );
 
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
 }

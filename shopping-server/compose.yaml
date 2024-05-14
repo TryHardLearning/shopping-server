@@ -1,1 +1,18 @@
+version: '3.8'
+
 services:
+  shopping-server:
+    image: openjdk:17-jdk-alpine
+    ports:
+      - "9145:8080"
+    volumes:
+      - ./target:/app/target  # Mapeamento do volume para a pasta de compilação do Maven
+    working_dir: /app
+    command: ["java", "-jar", "target/shopping-server.jar", "--spring.profiles.active=dev"]
+    depends_on:
+      - h2
+
+  h2:
+    image: oscarfonts/h2:latest
+    ports:
+      - "9092:8080"

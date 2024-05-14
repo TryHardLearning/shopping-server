@@ -7,7 +7,12 @@ import io.labs.shoppingserver.models.Product;
 import io.labs.shoppingserver.services.ProductsService;
 import io.labs.shoppingserver.services.implement.CrudServiceImpl;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+
+@RestController
+@RequestMapping("products")
 public class ProductsController extends AllCrudController<Product, ProductDTO, Long> {
     private final ProductsService service;
 

@@ -7,7 +7,11 @@ import io.labs.shoppingserver.models.User;
 import io.labs.shoppingserver.services.UserService;
 import io.labs.shoppingserver.services.implement.CrudServiceImpl;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("users")
 public class UserController extends AllCrudController<User, UserDTO, Long> {
 
     private final UserService service;

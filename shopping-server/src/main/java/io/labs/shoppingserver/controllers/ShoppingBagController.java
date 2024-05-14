@@ -6,7 +6,11 @@ import io.labs.shoppingserver.models.ShoppingBag;
 import io.labs.shoppingserver.services.ShoppingBagService;
 import io.labs.shoppingserver.services.implement.CrudServiceImpl;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("shoppingbag")
 public class ShoppingBagController extends AllCrudController<ShoppingBag, ShoppingBagDTO, Long> {
     private final ShoppingBagService service;
 
