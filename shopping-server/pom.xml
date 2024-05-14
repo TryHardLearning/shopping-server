@@ -15,7 +15,8 @@
     <description>shopping-server</description>
     <properties>
         <java.version>17</java.version>
-    </properties>
+        <start-class>io.labs.shoppingserver.ShoppingServerApplication</start-class>
+	</properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,20 +73,6 @@
             <artifactId>modelmapper</artifactId>
             <version>3.1.1</version>
         </dependency>
-        <!-- Test JUnit 5 -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.0.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.0.0</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -100,16 +87,6 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <properties>
-                        <junitPlatformName>org.junit.platform.JunitPlatform</junitPlatformName>
-                    </properties>
                 </configuration>
             </plugin>
         </plugins>
