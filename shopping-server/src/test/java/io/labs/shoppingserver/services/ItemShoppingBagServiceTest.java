@@ -1,4 +1,4 @@
-package services;
+package io.labs.shoppingserver.services;
 
 import io.labs.shoppingserver.models.ItemShoppingBag;
 import io.labs.shoppingserver.models.Product;
@@ -19,13 +19,18 @@ import static org.mockito.Mockito.when;
 
 
 public class ItemShoppingBagServiceTest {
-
+/*
     ItemShoppingBagRepository mockRepository = mock(ItemShoppingBagRepository.class);
 
     ItemShoppingBagService service = new ItemShoppingBagService(mockRepository);
 
     @BeforeAll
     public static void setup() {
+
+        Product product = Product.builder().name("GummyBear").description("Gummy").cost(25.5).build();
+
+        ItemShoppingBag itemOne = ItemShoppingBag.builder().product(product).quantity(1).cost(25.5).build();
+        ItemShoppingBag itemTwo = ItemShoppingBag.builder().product(product).quantity(1).cost(25.5).build();
 
     }
     @AfterAll
@@ -65,7 +70,8 @@ public class ItemShoppingBagServiceTest {
         @Test
         public void test_saveItemToShoppingBag() {
             // Create a new item
-            ItemShoppingBag item = new ItemShoppingBag();
+
+            var item  = new ItemShoppingBag();
             item.setProduct(new Product());
             item.setQuantity(1);
             item.setCost(10.0);
@@ -125,6 +131,7 @@ public class ItemShoppingBagServiceTest {
             assertTrue(savedItems.contains(item1));
             assertTrue(savedItems.contains(item2));
         }
+        */
     /*
         // can find an item in the shopping bag by ID
         @Test

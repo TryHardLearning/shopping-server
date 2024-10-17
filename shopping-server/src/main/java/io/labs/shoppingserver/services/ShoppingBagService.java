@@ -2,7 +2,6 @@ package io.labs.shoppingserver.services;
 
 import io.labs.shoppingserver.models.ShoppingBag;
 import io.labs.shoppingserver.models.User;
-import io.labs.shoppingserver.repositories.AuthService;
 import io.labs.shoppingserver.repositories.ShoppingBagRepository;
 import io.labs.shoppingserver.repositories.UserRepository;
 import io.labs.shoppingserver.services.implement.CrudServiceImpl;
@@ -17,11 +16,12 @@ import java.util.List;
 @Service
 public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
 
+    private final UserRepository userRepository;
     private final ShoppingBagRepository repository;
     private final SecurityContext securityContext;
 
-
-    public ShoppingBagService(ShoppingBagRepository repository, SecurityContext securityContext) {
+    public ShoppingBagService(UserRepository userRepository, ShoppingBagRepository repository, SecurityContext securityContext) {
+        this.userRepository = userRepository;
         this.repository = repository;
         this.securityContext = securityContext;
     }
@@ -34,9 +34,8 @@ public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
 
         if (principal != null) {
             return (User) principal;
-        } else {
-            throw new RuntimeException("No User Data");
         }
+        return null;
     }
 
     @Override
@@ -45,27 +44,39 @@ public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
     }
 
 
-    public ShoppingBag findShoppingBag(Long id) {
+    public ShoppingBag findShoppingBag(Long id) throws Exception {
         User findUser = findUserBySecurityContext();
-        return repository.findByUserId(findUser.getId());
+
+        if (findUser != null && findUser.getUsername() != null) {
+            User userLogged = userRepository.findByUsername(findUser.getUsername());
+            return repository.findByUserId(userLogged.getId());
+        }
+        return null;
     }
 
     @Override
-    public List<ShoppingBag> findAll(){
+    public List<ShoppingBag> findAll() {
         User findUser = findUserBySecurityContext();
-        ShoppingBag myBag = repository.findByUserId(findUser.getId());
-        List<ShoppingBag> shoppingBag = new ArrayList<>();
-        shoppingBag.add(myBag);
-        return shoppingBag;
+
+        if (findUser != null && findUser.getUsername() != null) {
+            User userLogged = userRepository.findByUsername(findUser.getUsername());
+            ShoppingBag userBag = repository.findByUserId(userLogged.getId());
+            List<ShoppingBag> shoppingBags = new ArrayList<>();
+            shoppingBags.add(userBag);
+            return shoppingBags;
+        }
+        return null;
     }
 
     @Override
-    public ShoppingBag save (ShoppingBag entity){
+    public ShoppingBag save (ShoppingBag entity) {
         User findUser = findUserBySecurityContext();
-        if(entity.getUser() != null && entity.getUser().getId().equals( findUser.getId())){
+
+        if (findUser != null && findUser.getUsername() != null) {
+            User userLogged = userRepository.findByUsername(findUser.getUsername());
+            entity.setUser(userLogged);
             return repository.save(entity);
         }
-        entity.setUser(findUser);
-        return repository.save(entity);
+        return null;
     }
 }

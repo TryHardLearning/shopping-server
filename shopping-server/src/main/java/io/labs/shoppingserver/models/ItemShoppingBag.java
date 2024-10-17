@@ -22,9 +22,9 @@ public class ItemShoppingBag {
     private Product product;
 
     @NotNull
-    private Integer quantity;
+    private int quantity;
 
     @NotNull
-    private Double cost;
+    private double cost;
 
 }

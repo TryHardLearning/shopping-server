@@ -1,7 +1,8 @@
-package io.labs.shoppingserver.repositories;
+package io.labs.shoppingserver.services;
 
 
 import io.labs.shoppingserver.models.User;
+import io.labs.shoppingserver.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

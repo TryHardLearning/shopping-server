@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import io.labs.shoppingserver.models.User;
-import io.labs.shoppingserver.repositories.AuthService;
+import io.labs.shoppingserver.services.AuthService;
 import io.labs.shoppingserver.security.dto.AuthenticationResponse;
 import io.labs.shoppingserver.security.dto.UserResponseDTO;
 import lombok.NoArgsConstructor;

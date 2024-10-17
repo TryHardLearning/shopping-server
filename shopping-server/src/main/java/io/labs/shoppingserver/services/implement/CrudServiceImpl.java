@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class CrudServiceImpl<T, ID extends Serializable>{
     protected abstract JpaRepository<T, ID> getRepository();
 
-    public List<T> findAll() {
+    public List<T> findAll() throws Exception {
         return getRepository().findAll();
     }
 
@@ -24,7 +24,7 @@ public abstract class CrudServiceImpl<T, ID extends Serializable>{
         return getRepository().findAll(pageable);
     }
 
-    public T save(T entity) {
+    public T save(T entity) throws Exception {
         return getRepository().save(entity);
     }
 
@@ -47,7 +47,6 @@ public abstract class CrudServiceImpl<T, ID extends Serializable>{
     public boolean exists(ID id) {
         return getRepository().existsById(id);
     }
-
 
     @Transactional(readOnly = true)
     public long count() {

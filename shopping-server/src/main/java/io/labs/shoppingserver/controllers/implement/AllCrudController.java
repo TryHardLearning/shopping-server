@@ -36,7 +36,7 @@ public abstract class AllCrudController<T, D, ID extends Serializable>{
     }
 
     @GetMapping //http://ip.api:port/classname
-    public ResponseEntity<List<D>> findAll() {
+    public ResponseEntity<List<D>> findAll() throws Exception {
         return ResponseEntity.ok(
                 getService().findAll().stream().map(
                         this::convertToDto).collect(Collectors.toList())
@@ -63,13 +63,13 @@ public abstract class AllCrudController<T, D, ID extends Serializable>{
     }
 
     @PostMapping
-    public ResponseEntity<D> create(@RequestBody @Valid D entity) {
+    public ResponseEntity<D> create(@RequestBody @Valid D entity) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(convertToDto(getService().save(convertToEntity(entity))));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<D> update(@PathVariable ID id, @RequestBody @Valid D entity) {
+    public ResponseEntity<D> update(@PathVariable ID id, @RequestBody @Valid D entity) throws Exception {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(convertToDto(getService().save(convertToEntity(entity))));
     }

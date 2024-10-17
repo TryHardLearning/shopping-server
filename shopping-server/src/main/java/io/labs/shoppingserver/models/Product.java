@@ -27,6 +27,6 @@ public class Product {
 
     private String imgLink;
     @NotNull
-    private Double cost;
+    private double cost;
 
 }
