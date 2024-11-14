@@ -18,7 +18,7 @@ public class ItemShoppingBag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne @NotNull
+    @ManyToOne @NotNull
     private Product product;
 
     @NotNull
@@ -27,4 +27,10 @@ public class ItemShoppingBag {
     @NotNull
     private double cost;
 
+    @ManyToOne @NotNull
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "shopping_bag_id", referencedColumnName = "id") // Correct join column definition
+    private ShoppingBag shoppingBag;
 }

@@ -1,7 +1,9 @@
 package io.labs.shoppingserver.services;
 
+import io.labs.shoppingserver.models.ItemShoppingBag;
 import io.labs.shoppingserver.models.ShoppingBag;
 import io.labs.shoppingserver.models.User;
+import io.labs.shoppingserver.repositories.ItemShoppingBagRepository;
 import io.labs.shoppingserver.repositories.ShoppingBagRepository;
 import io.labs.shoppingserver.repositories.UserRepository;
 import io.labs.shoppingserver.services.implement.CrudServiceImpl;
@@ -16,26 +18,12 @@ import java.util.List;
 @Service
 public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
 
-    private final UserRepository userRepository;
+    private final ItemShoppingBagRepository itemShoppingBagRepository;
     private final ShoppingBagRepository repository;
-    private final SecurityContext securityContext;
 
-    public ShoppingBagService(UserRepository userRepository, ShoppingBagRepository repository, SecurityContext securityContext) {
-        this.userRepository = userRepository;
+    public ShoppingBagService(ItemShoppingBagRepository itemShoppingBagRepository, ShoppingBagRepository repository) {
+        this.itemShoppingBagRepository = itemShoppingBagRepository;
         this.repository = repository;
-        this.securityContext = securityContext;
-    }
-
-    private User findUserBySecurityContext(){
-
-        Authentication authentication = securityContext.getAuthentication();
-
-        Object principal = authentication.getPrincipal();
-
-        if (principal != null) {
-            return (User) principal;
-        }
-        return null;
     }
 
     @Override
@@ -44,39 +32,19 @@ public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
     }
 
 
-    public ShoppingBag findShoppingBag(Long id) throws Exception {
-        User findUser = findUserBySecurityContext();
-
-        if (findUser != null && findUser.getUsername() != null) {
-            User userLogged = userRepository.findByUsername(findUser.getUsername());
-            return repository.findByUserId(userLogged.getId());
-        }
-        return null;
+    @Override
+    public ShoppingBag findById(Long id) {
+        return repository.findByUserId(id);
     }
 
     @Override
-    public List<ShoppingBag> findAll() {
-        User findUser = findUserBySecurityContext();
+    public ShoppingBag save(ShoppingBag entity) {
 
-        if (findUser != null && findUser.getUsername() != null) {
-            User userLogged = userRepository.findByUsername(findUser.getUsername());
-            ShoppingBag userBag = repository.findByUserId(userLogged.getId());
-            List<ShoppingBag> shoppingBags = new ArrayList<>();
-            shoppingBags.add(userBag);
-            return shoppingBags;
-        }
-        return null;
-    }
+        List<ItemShoppingBag> myItens =  entity.getItems();
 
-    @Override
-    public ShoppingBag save (ShoppingBag entity) {
-        User findUser = findUserBySecurityContext();
-
-        if (findUser != null && findUser.getUsername() != null) {
-            User userLogged = userRepository.findByUsername(findUser.getUsername());
-            entity.setUser(userLogged);
-            return repository.save(entity);
-        }
-        return null;
+       for (ItemShoppingBag itemShoppingBag : myItens) {
+           itemShoppingBag.setShoppingBag(entity);
+       }
+       return repository.save(entity);
     }
 }

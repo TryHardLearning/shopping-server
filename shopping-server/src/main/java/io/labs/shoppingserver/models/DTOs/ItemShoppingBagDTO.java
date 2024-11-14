@@ -1,6 +1,7 @@
 package io.labs.shoppingserver.models.DTOs;
 
 import io.labs.shoppingserver.models.Product;
+import io.labs.shoppingserver.models.ShoppingBag;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -19,7 +20,7 @@ public class ItemShoppingBagDTO {
 
     Long id;
 
-    @OneToOne @NotNull
+    @NotNull
     private Product product;
 
     @NotNull
@@ -27,4 +28,6 @@ public class ItemShoppingBagDTO {
 
     @NotNull
     private Double cost;
+
+    private ShoppingBag shoppingBag;
 }

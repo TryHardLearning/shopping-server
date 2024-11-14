@@ -2,11 +2,9 @@ package io.labs.shoppingserver.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -20,9 +18,12 @@ public class ShoppingBag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany @NotNull
-    private List<ItemShoppingBag> ProductItems;
+    @Getter
+    @NotNull
+    @OneToMany(mappedBy = "shoppingBag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ItemShoppingBag> items;
 
-    @OneToOne @NotNull
+    @NotNull @ManyToOne
     private User user;
+
 }

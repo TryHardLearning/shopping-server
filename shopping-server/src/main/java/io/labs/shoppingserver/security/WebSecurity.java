@@ -40,7 +40,6 @@ public class WebSecurity {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Bean
     @SneakyThrows
     public SecurityFilterChain filterChain(HttpSecurity http) {

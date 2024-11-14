@@ -20,10 +20,9 @@ public class ShoppingBagDTO {
 
     private Long id;
 
-    @OneToMany @NotNull
-    List<ItemShoppingBag> ProductItems;
+    @NotNull
+    List<ItemShoppingBag> items;
 
-    @ManyToOne
     @NotNull
     private User user;
 }

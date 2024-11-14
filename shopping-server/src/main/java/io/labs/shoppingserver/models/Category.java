@@ -14,25 +14,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+public class Category {
+    @Id
+    private Long id;
 
     @NotNull
     private String name;
 
-    @NotNull
-    private String description;
-
-    private String imgLink;
-    @NotNull
-    private double cost;
-
     /*
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products;
     */
 
 }

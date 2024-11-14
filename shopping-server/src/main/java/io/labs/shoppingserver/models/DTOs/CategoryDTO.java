@@ -1,7 +1,6 @@
 package io.labs.shoppingserver.models.DTOs;
 
-import io.labs.shoppingserver.models.Category;
-import jakarta.persistence.*;
+import io.labs.shoppingserver.models.Product;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,24 +9,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductDTO {
+public class CategoryDTO {
 
-    private long Id;
-
+    private Long id;
     @NotNull
     private String name;
-
-    @NotNull
-    private String description;
-
-    private String imgLink;
-
-    @NotNull
-    private Double cost;
-    
 }
