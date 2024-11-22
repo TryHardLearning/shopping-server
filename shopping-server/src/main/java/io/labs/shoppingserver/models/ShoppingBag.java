@@ -20,7 +20,8 @@ public class ShoppingBag {
 
     @Getter
     @NotNull
-    @OneToMany(mappedBy = "shoppingBag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany
+    /*@OneToMany(mappedBy = "shoppingBag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)*/
     private List<ItemShoppingBag> items;
 
     @NotNull @ManyToOne

@@ -31,6 +31,6 @@ public class ItemShoppingBag {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "shopping_bag_id", referencedColumnName = "id") // Correct join column definition
+    /*@JoinColumn(name = "shopping_bag_id", referencedColumnName = "id") // Correct join column definition*/
     private ShoppingBag shoppingBag;
 }
