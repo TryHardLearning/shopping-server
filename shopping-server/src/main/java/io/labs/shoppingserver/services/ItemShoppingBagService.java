@@ -33,14 +33,14 @@ public class ItemShoppingBagService extends CrudServiceImpl<ItemShoppingBag, Lon
 
     @Override
     public ItemShoppingBag save(ItemShoppingBag entity) {
-        if (entity.getShoppingBag() == null) {
+        /*if (entity.getShoppingBag() == null) {
             List<ItemShoppingBag> item = new ArrayList<ItemShoppingBag>();
             item.add(entity);
 
             ShoppingBag bag = ShoppingBag.builder().items(item).build();
             shoppingBagService.save(bag);
             entity.setShoppingBag(bag);
-        }
+        }*/
 
         return repository.save(entity);
     }

@@ -2,9 +2,7 @@ package io.labs.shoppingserver.models.DTOs;
 
 import io.labs.shoppingserver.models.Product;
 import io.labs.shoppingserver.models.ShoppingBag;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
