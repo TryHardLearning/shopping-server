@@ -39,12 +39,11 @@ public class ShoppingBagService extends CrudServiceImpl<ShoppingBag, Long> {
 
     @Override
     public ShoppingBag save(ShoppingBag entity) {
-        /*
-        List<ItemShoppingBag> myItens =  entity.getItems();
-
-       for (ItemShoppingBag itemShoppingBag : myItens) {
-           itemShoppingBag.setShoppingBag(entity);
-       }*/
-       return repository.save(entity);
+        // Garantir que todos os itens tenham a referência correta
+        for (ItemShoppingBag item : entity.getItems()) {
+            item.setShoppingBag(entity);
+            System.out.println(item.getId());
+        }
+        return repository.save(entity);
     }
 }

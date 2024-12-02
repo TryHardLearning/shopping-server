@@ -1,9 +1,11 @@
 package io.labs.shoppingserver.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,11 +20,14 @@ public class ShoppingBag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
-    @NotNull
-    @OneToMany
-    /*@OneToMany(mappedBy = "shoppingBag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)*/
-    private List<ItemShoppingBag> items;
+    @OneToMany(
+            mappedBy = "shoppingBag",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    @JsonManagedReference
+    private List<ItemShoppingBag> items = new ArrayList<>();
 
     @NotNull @ManyToOne
     private User user;
